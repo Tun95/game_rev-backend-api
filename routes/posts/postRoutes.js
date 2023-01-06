@@ -18,7 +18,7 @@ const postRoutes = express.Router();
 
 postRoutes.post("/", isAuth, createPostCtrl);
 postRoutes.get("/", fetchAllPostCtrl);
-postRoutes.get("/topDownloads", fetchTopDownloadCtrl);
+postRoutes.get("/top-downloads", fetchTopDownloadCtrl);
 postRoutes.get("/download/:id", fetchDownLinkCtrl);
 postRoutes.get("/summary", fetchSummary);
 postRoutes.get("/related/:id", relatedPostCtrl);
