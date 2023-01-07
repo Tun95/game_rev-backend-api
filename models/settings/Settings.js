@@ -68,6 +68,38 @@ const settingSchema = new mongooose.Schema(
       default:
         "https://res.cloudinary.com/dstj5eqcd/image/upload/v1672751981/banner_biet3l.jpg",
     },
+    sideOne: {
+      type: String,
+      default: "ADVERTISMENT",
+    },
+    sideTwo: {
+      type: String,
+      default: "TOP DOWNLOADED GAMES",
+    },
+    sideThree: {
+      type: String,
+      default: "COPYRIGHT & DMCA PROTECTED",
+    },
+    sideFour: {
+      type: String,
+      default: "HOW TO FIX GAME ERRORS",
+    },
+    sideFive: {
+      type: String,
+      default: "ADVERTISMENT",
+    },
+    sideSix: {
+      type: String,
+      default: "FOLLOW US ON",
+    },
+    sideSeven: {
+      type: String,
+      default: "REQUEST GAME SECTION",
+    },
+    sideEight: {
+      type: String,
+      default: "NEVER MISS A GAME",
+    },
   },
   { timestamps: true }
 );

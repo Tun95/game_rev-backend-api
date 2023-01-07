@@ -22,46 +22,6 @@ const createPostCtrl = expressAsyncHandler(async (req, res) => {
 //============
 // Fetch all Post
 //============
-const fetchSummary = expressAsyncHandler(async (req, res) => {
-  //GET MONTHLY USERS STATS
-  const subscribers = await Subscriber.aggregate([
-    {
-      $group: {
-        _id: 1,
-        numSubscribers: { $sum: 1 },
-      },
-    },
-    { $sort: { _id: 1 } },
-  ]);
-
-  //GET DAILY INCOME
-  const dailySummary = await Post.aggregate([
-    {
-      $group: {
-        _id: { $dateToString: { format: "%Y-%m-%d", date: "$createdAt" } },
-        downloads: { $sum: "$downloadCount" },
-        totalViews: { $sum: "$numViews" },
-      },
-    },
-    { $sort: { _id: -1 } },
-  ]);
-
-  //GET DAILY INCOME
-  const posts = await Post.aggregate([
-    {
-      $group: {
-        _id: 1,
-        totalPosts: { $sum: 1 },
-      },
-    },
-    { $sort: { _id: 1 } },
-  ]);
-  res.send({ subscribers, dailySummary, posts });
-});
-
-//============
-// Fetch all Post
-//============
 const fetchAllPostCtrl = expressAsyncHandler(async (req, res) => {
   try {
     const posts = await Post.find({}).sort("-createdAt").populate("comments");
@@ -209,6 +169,46 @@ const fetchPostCtrl = expressAsyncHandler(async (req, res) => {
   } catch (error) {
     res.json(error);
   }
+});
+
+//============
+// Fetch Summary
+//============
+const fetchSummary = expressAsyncHandler(async (req, res) => {
+  //GET DAILY SUBSCRIBER
+  const subscribers = await Subscriber.aggregate([
+    {
+      $group: {
+        _id: 1,
+        numSubscribers: { $sum: 1 },
+      },
+    },
+    { $sort: { _id: 1 } },
+  ]);
+
+  //GET DAILY SUMMARY
+  const dailySummary = await Post.aggregate([
+    {
+      $group: {
+        _id: { $dateToString: { format: "%Y-%m-%d", date: "$updatedAt" } },
+        downloads: { $sum: "$downloadCount" },
+        totalViews: { $sum: "$numViews" },
+      },
+    },
+    { $sort: { _id: -1 } },
+  ]);
+
+  //GET TOTAL POST
+  const posts = await Post.aggregate([
+    {
+      $group: {
+        _id: 1,
+        totalPosts: { $sum: 1 },
+      },
+    },
+    { $sort: { _id: 1 } },
+  ]);
+  res.send({ subscribers, dailySummary, posts });
 });
 
 //============
