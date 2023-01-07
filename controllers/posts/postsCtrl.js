@@ -190,7 +190,7 @@ const fetchSummary = expressAsyncHandler(async (req, res) => {
   const dailySummary = await Post.aggregate([
     {
       $group: {
-        _id: { $dateToString: { format: "%Y-%m-%d", date: "$updatedAt" } },
+        _id: { $dateToString: { format: "%Y-%m-%d", date: "$createdAt" } },
         downloads: { $sum: "$downloadCount" },
         totalViews: { $sum: "$numViews" },
       },
