@@ -8,6 +8,14 @@ const adSchema = new mongooose.Schema(
     ppcTwo: {
       type: String,
     },
+    clientId: {
+      type: String,
+      default: "ca-pub-4626968536803317",
+    },
+    slot: {
+      type: String,
+      default: "6639897134",
+    },
     bannerOne: {
       type: String,
       default:

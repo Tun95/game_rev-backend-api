@@ -100,6 +100,16 @@ const settingSchema = new mongooose.Schema(
       type: String,
       default: "NEVER MISS A GAME",
     },
+    downloadBtn: {
+      type: String,
+      default:
+        "https://res.cloudinary.com/dstj5eqcd/image/upload/v1673192130/download_tjcozw.png",
+    },
+    buyBtn: {
+      type: String,
+      default:
+        "https://res.cloudinary.com/dstj5eqcd/image/upload/v1673194714/buy_p7llww.png",
+    },
   },
   { timestamps: true }
 );

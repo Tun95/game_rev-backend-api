@@ -36,6 +36,10 @@ const postSchema = mongoose.Schema(
       type: String,
       // required: true,
     },
+    buyLink: {
+      type: String,
+      // required: true,
+    },
     downloadCount: {
       type: Number,
       default: 0,
