@@ -110,6 +110,10 @@ const settingSchema = new mongooose.Schema(
       default:
         "https://res.cloudinary.com/dstj5eqcd/image/upload/v1673194714/buy_p7llww.png",
     },
+    webName: {
+      type: String,
+      default: "GAME REVIEWS",
+    },
   },
   { timestamps: true }
 );
