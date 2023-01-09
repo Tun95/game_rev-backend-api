@@ -86,7 +86,7 @@ const settingSchema = new mongooose.Schema(
     },
     sideFive: {
       type: String,
-      default: "ADVERTISMENT",
+      default: "Game Corruption Errors & Fix",
     },
     sideSix: {
       type: String,
