@@ -2,8 +2,9 @@ const mongoose = require("mongoose");
 const express = require("express");
 const cookieSession = require("cookie-session");
 const session = require("express-session");
+const path = require("path");
 const passport = require("passport");
-const dotenv = require("dotenv");
+
 const cors = require("cors");
 const passportSetup = require("./controllers/users/passport");
 const morgan = require("morgan");
@@ -17,7 +18,7 @@ const settingsRoutes = require("./routes/settings/settingRoutes");
 const subscriberRoutes = require("./routes/subscribers/subRoutes");
 const adsRoutes = require("./routes/ads/adsRoutes");
 
-dotenv.config();
+require("dotenv").config();
 
 mongoose.set("strictQuery", false);
 mongoose
@@ -95,6 +96,16 @@ app.use("/api/ads", adsRoutes);
 
 //Upload Routes
 app.use("/api/upload", uploadRouter);
+
+const _dirname = path.resolve();
+app.use(express.static(path.join(_dirname, "/frontend/build")));
+app.use(express.static(path.join(_dirname, "/admin/build")));
+app.get("*", (req, res) =>
+  res.sendFile(path.join(_dirname, "/frontend/build/index.html"))
+);
+app.get("*", (req, res) =>
+  res.sendFile(path.join(_dirname, "/admin/build/index.html"))
+);
 
 //Error Handlers
 app.use(notFound);
